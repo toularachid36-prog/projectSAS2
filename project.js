@@ -1,6 +1,6 @@
 let prompt = require('prompt-sync')();
 const candidats = [{
-	cin: "AB123456", nom: "Boushaba", prenom: "Soufiane", partiPolitique: "Indépendant", age: 40, electeurs: ["PA261531"]
+	cin: "AB123456", nom: "Boushaba", prenom: "Soufiane", partiPolitique: "PGD", age: 40, electeurs: ["PA261531"]
 }
 ];
 function ajouterCandidat(){
@@ -31,7 +31,7 @@ if (isNaN(nombre) || nombre<=0){
 	console.log("Erreur : Nombre Invalide");
 	return;}
 for(let i = 0; i<nombre; i++){
-	console.log("____candidat" + (i + 1) + "____");
+	console.log("candidat" + (i + 1) + " : ");
     const cin = prompt("CIN :");
 	const candidatExiste = candidats.find(
 		candidat=>candidat.cin === cin);
@@ -47,12 +47,12 @@ for(let i = 0; i<nombre; i++){
 }
 }
 function afficherliste(){
-	console.log("____Liste Des Candidats____");
+	console.log("Liste Des Candidats");
 	if (candidats.length===0){
 		console.log("Aucun Candidat");
 		return;}
 	candidats.forEach((candidat, index)=>{
-		console.log("----Candidat"+ index + 1 + "---- :");
+		console.log("Candidat"+ (index + 1) + ":");
 		console.log("CIN :" + candidat.cin);
 		console.log("NOM :" + candidat.nom);
 		console.log("PRENOM :" + candidat.prenom);
@@ -77,7 +77,7 @@ Classement.forEach(function(candidat, index)
 	console.log("Nombre De Votes : " + candidat.electeurs.length); }); 
 }
 function filtrercandidat (){
-	console.log("---Filtrer Par Parti Politique---");
+	console.log("Filtrer Par Parti Politique :");
 	const parti = prompt("Entrez Le Parti Politique :");
 	const resultat = candidats.filter(function(candidat){
     return candidat.partiPolitique.toLowerCase() === parti.toLowerCase()});
@@ -86,7 +86,7 @@ function filtrercandidat (){
 			return;}
 	console.log("----Candidat De Parti :" + parti);
 	resultat.forEach((candidat, index)=>{
-	console.log("--- Candidat " + (index + 1) + " ---"); 
+	console.log("Candidat " + (index + 1) + " : "); 
 	console.log("CIN : " + candidat.cin); 
 	console.log("NOM : " + candidat.nom); 
 	console.log("PRENOM : " + candidat.prenom); 
@@ -94,6 +94,7 @@ function filtrercandidat (){
 	console.log("AGE : " + candidat.age);
 	console.log("Nombre De Votes : " + candidat.electeurs.length); }); 	
 }
+
 ajouterCandidat();
 ajouterplufois();
 afficherliste();
