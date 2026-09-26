@@ -18,10 +18,14 @@ function ajouterCandidat() {
 	let nom = prompt("Entrez Votre Nom :");
 	let prenom = prompt("Entrez Votre Prenom :");
 	let partiPolitique = prompt("Parti Politique OU Indépendant :");
-	let age = +prompt("Entrez Votre Age :");
-	if (age < 18) {
-		console.log("Erreur :T'es Pas Un Adulte");
-		return;}
+	let age;
+	while(true){
+    age = +prompt("Entrez Votre Age :");
+	if (!isNaN(age) && age >= 18){
+		break;} 
+		console.log("Erreur :T'es Mineur Pour Voter");
+		console.log("Veuillez Entrer Un Age Correct");
+		}
 	const nouveaucandidat = {
 		cin: cin, nom: nom, prenom: prenom, partiPolitique: partiPolitique, age: age, electeurs: []}
 	candidats.push(nouveaucandidat);
@@ -45,7 +49,14 @@ function ajouterplufois() {
 		let nom = prompt("Entrez Votre Nom :");
 		let prenom = prompt("Entrez Votre Prenom :");
 		let partiPolitique = prompt("Parti Politique OU Indépendant :");
-		let age = +prompt("Entrez Votre Age :");
+		let age;
+	while(true){
+    age = +prompt("Entrez Votre Age :");
+	if (!isNaN(age) && age >= 18){
+		break;} 
+		console.log("Erreur :T'es Mineur Pour Voter");
+		console.log("Veuillez Entrer Un Age Correct");
+		}
 		candidats.push({ cin: cin, nom: nom, prenom: prenom, partiPolitique: partiPolitique, age: age, electeurs: [] });
 		console.log("Candidats Ajouter Avec Succés");}
 }
@@ -205,12 +216,13 @@ while(suite){
 	console.log("1 - Ajouter Un Nouveau Candidat .");
 	console.log("2 - Ajouter plusieur candidats .");
 	console.log("3 - Afficher Les Candidats .");
-	console.log("4 - Filtrer Les Candidats .");
-	console.log("5 - Voter .");
-	console.log("6 - Modifier Un Candidat .");
-	console.log("7 - Supprimer Un Candidat .");
-    console.log("8 - Recherche Un Candidat .");
-	console.log("9 - Statistiques .");
+	console.log("4 - Afficher Le Classement .");
+	console.log("5 - Filtrer Les Candidats .");
+	console.log("6 - Voter .");
+	console.log("7 - Modifier Un Candidat .");
+	console.log("8 - Supprimer Un Candidat .");
+    console.log("9 - Recherche Un Candidat .");
+	console.log("10 - Statistiques .");
 	console.log("0 - Quitter .");
 	let choix = +prompt("Entrez Votre Choix :");
 switch(choix){
@@ -220,17 +232,19 @@ switch(choix){
 	break;
 	case 3 : afficherliste();
 	break;
-	case 4 : filtrercandidat();
+	case 4 : afficherclassement();
 	break;
-	case 5 : voterpour();
+	case 5 : filtrercandidat();
 	break;
-	case 6 : modifier();
+	case 6 : voterpour();
 	break;
-	case 7 : supprimeruncandidat();
+	case 7 : modifier();
 	break;
-	case 8 : rechercheuncandidat();
+	case 8 : supprimeruncandidat();
 	break;
-	case 9 : statistique();
+	case 9 : rechercheuncandidat();
+	break;
+	case 10 : statistique();
 	break;
 	case 0 : suite = false;
 	console.log("Au Revoir !");
