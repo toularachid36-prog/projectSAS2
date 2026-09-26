@@ -1,6 +1,7 @@
 let prompt = require('prompt-sync')();
 const candidats = [{
-	cin: "AB123456", nom: "Boushaba", prenom: "Soufiane", partiPolitique: "PGD", age: 40, electeurs: ["PA261531"]}
+	cin: "AB123456", nom: "Boushaba", prenom: "Soufiane", partiPolitique: "PGD", age: 40, electeurs: ["PA261531"]},
+	{cin: "MP123456", nom: "Bouh", prenom: "Lehcen", partiPolitique: "PAM", age: 35, electeurs: []}
 ];
 function ajouterCandidat() {
 	console.log("Ajouter un Candidat :");
@@ -33,7 +34,7 @@ function ajouterplufois() {
 		console.log("Erreur : Nombre Invalide");
 		return;}
 	for (let i = 0; i < nombre; i++) {
-		console.log("candidat" + (i + 1) + " : ");
+		console.log("candidat"+ " " + (i + 1) + " : ");
 		const cin = prompt("CIN :");
 		const candidatExiste = candidats.find(
 			candidat => candidat.cin === cin);
@@ -55,13 +56,13 @@ function afficherliste() {
 		return;
 	}
 	candidats.forEach((candidat, index) => {
-		console.log("Candidat" + (index + 1) + ":");
-		console.log("CIN :" + candidat.cin);
-		console.log("NOM :" + candidat.nom);
-		console.log("PRENOM :" + candidat.prenom);
-		console.log("Parti Politique :" + candidat.partiPolitique);
-		console.log("AGE :" + candidat.age);
-		console.log("Nombre De Votes :" + candidat.electeurs.length);
+		console.log("Candidat"+ " " + (index + 1) + " :");
+		console.log("CIN : " + candidat.cin);
+		console.log("NOM : " + candidat.nom);
+		console.log("PRENOM : " + candidat.prenom);
+		console.log("Parti Politique : " + candidat.partiPolitique);
+		console.log("AGE : " + candidat.age);
+		console.log("Nombre De Votes : " + candidat.electeurs.length);
 	})
 }
 function afficherclassement() {
@@ -166,7 +167,7 @@ function rechercheuncandidat(){
 	console.log("AGE :" + resultat.age);
 	console.log("Nombre De Votes :" + resultat.electeurs.length);
 }
-function statistique (){
+function statistique(){
   console.log("Statistique :");
   console.log("Nombre Total De Candidats : "+ candidats.length);
   let totalvote = 0;
@@ -196,13 +197,46 @@ function statistique (){
 				compteur++;}}
 		console.log(partis[i] + ":" + compteur + " " + "candidat");}		
 }
-ajouterCandidat();
-ajouterplufois();
-afficherliste();
-afficherclassement();
-filtrercandidat();
-voterpour();
-modifier();
-supprimeruncandidat();
-rechercheuncandidat();
-statistique();
+function menuprincipal(){
+let suite = true;
+    console.log("Bienvenue :"); 
+while(suite){
+	console.log("Menu Principal :");
+	console.log("1 - Ajouter Un Nouveau Candidat .");
+	console.log("2 - Ajouter plusieur candidats .");
+	console.log("3 - Afficher Les Candidats .");
+	console.log("4 - Filtrer Les Candidats .");
+	console.log("5 - Voter .");
+	console.log("6 - Modifier Un Candidat .");
+	console.log("7 - Supprimer Un Candidat .");
+    console.log("8 - Recherche Un Candidat .");
+	console.log("9 - Statistiques .");
+	console.log("0 - Quitter .");
+	let choix = +prompt("Entrez Votre Choix :");
+switch(choix){
+	case 1 : ajouterCandidat();
+	break;
+	case 2 : ajouterplufois();
+	break;
+	case 3 : afficherliste();
+	break;
+	case 4 : filtrercandidat();
+	break;
+	case 5 : voterpour();
+	break;
+	case 6 : modifier();
+	break;
+	case 7 : supprimeruncandidat();
+	break;
+	case 8 : rechercheuncandidat();
+	break;
+	case 9 : statistique();
+	break;
+	case 0 : suite = false;
+	console.log("Au Revoir !");
+	break;
+	default : console.log("Choix Invalide !!");
+}
+}
+}
+menuprincipal();
