@@ -166,6 +166,36 @@ function rechercheuncandidat(){
 	console.log("AGE :" + resultat.age);
 	console.log("Nombre De Votes :" + resultat.electeurs.length);
 }
+function statistique (){
+  console.log("Statistique :");
+  console.log("Nombre Total De Candidats : "+ candidats.length);
+  let totalvote = 0;
+  for(let i=0; i < candidats.length; i++){
+	totalvote = totalvote + candidats[i].electeurs.length}
+	console.log("Nombre Total De Votes :" + totalvote);
+	let candidatstop = [...candidats];
+	candidatstop.sort(function(a, b){
+    return b.electeurs.length - a.electeurs.length;
+	});
+	console.log("Top 3 Des Votes :");
+	let limite = 3;
+	if(candidatstop.length<3){
+		limite = candidatstop.length}
+	for(let i = 0; i<limite; i++ ){
+    console.log((i + 1) + "-" + candidatstop[i].prenom + " " + candidatstop[i].nom + " : " + candidatstop[i].electeurs.length + " " + "Votes" );
+		}
+    console.log("Le Nombre De Candidats Par Parti Politique :");
+	let partis = [];
+	for(let i = 0; i<candidats.length; i++){
+		if(!partis.includes(candidats[i].partiPolitique)){
+			partis.push(candidats[i].partiPolitique);}}
+	for(let i = 0; i<partis.length; i++){
+		let compteur = 0;
+		for(let j = 0; j<candidats.length; j++){
+			if(candidats[j].partiPolitique === partis[i]){
+				compteur++;}}
+		console.log(partis[i] + ":" + compteur + " " + "candidat");}		
+}
 ajouterCandidat();
 ajouterplufois();
 afficherliste();
@@ -175,3 +205,4 @@ voterpour();
 modifier();
 supprimeruncandidat();
 rechercheuncandidat();
+statistique();
