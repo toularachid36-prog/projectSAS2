@@ -142,6 +142,27 @@ function supprimeruncandidat(){
  let index = candidats.findIndex(function(candidat){
 	return candidat.cin === cin;
  });
+ if(index === -1){
+	console.log("Aucun Candidat Trouvé");
+	return;
+ }
+ candidats.splice(index, 1);
+ console.log("Candidat Supprimé Avec Succes");
+}
+function rechercheuncandidat(){
+ console.log("Recherche Un Candidat :");
+ let nom = prompt("Entrez Le Nom A recherché :");
+ let resultat = candidats.filter(function(candidat){
+	return candidat.nom.toLowerCase().includes(nom.toLowerCase());
+ });
+ if(resultat.length === 0){
+	console.log("Aucun Candidat Trouvé");
+ }
+ else{
+	for(let i = 0;i < resultat.length; i++){
+		rechercheuncandidat(resultat[i]);
+	}
+ }
 }
 ajouterCandidat();
 ajouterplufois();
@@ -151,3 +172,4 @@ filtrercandidat();
 voterpour();
 modifier();
 supprimeruncandidat();
+rechercheuncandidat();
