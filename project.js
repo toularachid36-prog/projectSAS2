@@ -5,7 +5,7 @@ const candidats = [{
 function ajouterCandidat() {
 	console.log("Ajouter un Candidat :");
 	let cin;
-	while (true) {
+	while (true) {  
 		cin = prompt("Entrez Votre CIN :");
 		const candidatExiste = candidats.find(
 			candidat => candidat.cin === cin);
@@ -152,17 +152,19 @@ function supprimeruncandidat(){
 function rechercheuncandidat(){
  console.log("Recherche Un Candidat :");
  let nom = prompt("Entrez Le Nom A recherché :");
- let resultat = candidats.filter(function(candidat){
-	return candidat.nom.toLowerCase().includes(nom.toLowerCase());
+ let resultat = candidats.find(function(candidat){
+	return candidat.nom.toLowerCase() === nom.toLowerCase();
  });
- if(resultat.length === 0){
+ if(!resultat){
 	console.log("Aucun Candidat Trouvé");
- }
- else{
-	for(let i = 0;i < resultat.length; i++){
-		rechercheuncandidat(resultat[i]);
-	}
- }
+	return;}
+    console.log("Candidat Trouvé :");
+	console.log("CIN :" + resultat.cin);
+	console.log("NOM :" + resultat.nom);
+	console.log("PRENOM :" + resultat.prenom);
+	console.log("Parti Politique :" + resultat.partiPolitique);
+	console.log("AGE :" + resultat.age);
+	console.log("Nombre De Votes :" + resultat.electeurs.length);
 }
 ajouterCandidat();
 ajouterplufois();
