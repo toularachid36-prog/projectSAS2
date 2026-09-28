@@ -32,49 +32,35 @@ function ajouterCandidat() {
 	console.log("Candidat Ajouter Avec Succés");
 }
 function ajouterplufois() {
-	console.log("Ajouter Plusieur Candidats :");
-	const nombre = +prompt("Combien De Candidats Que Vous Voulez Ajouter :");
-	if (isNaN(nombre) || nombre <= 0) {
-		console.log("Erreur : Nombre Invalide");
-		return;}
-	for (let i = 0; i < nombre; i++) {
-		console.log("candidat"+ " " + (i + 1) + " : ");
-		const cin = prompt("CIN :");
-		const candidatExiste = candidats.find(
-			candidat => candidat.cin === cin);
-		if (candidatExiste) {
-			console.log("Erreur : c'est cin existe déja.");
-			i--;
-			continue;}
-		let nom = prompt("Entrez Votre Nom :");
-		let prenom = prompt("Entrez Votre Prenom :");
-		let partiPolitique = prompt("Parti Politique OU Indépendant :");
-		let age;
-	while(true){
-    age = +prompt("Entrez Votre Age :");
-	if (!isNaN(age) && age >= 18){
-		break;} 
-		console.log("Erreur :T'es Mineur Pour Voter");
-		console.log("Veuillez Entrer Un Age Correct");
-		}
-		candidats.push({ cin: cin, nom: nom, prenom: prenom, partiPolitique: partiPolitique, age: age, electeurs: [] });
-		console.log("Candidats Ajouter Avec Succés");}
+    console.log("Ajouter Plusieurs Candidats :");
+    const nombre = +prompt("Combien De Candidats Que Vous Voulez Ajouter :");
+    if (isNaN(nombre) || nombre <= 0) {
+        console.log("Erreur : Nombre Invalide");
+        return;}
+    for (let i = 0; i < nombre; i++) {
+        console.log("Candidat " + (i + 1) + " :");
+        const cin = prompt("CIN :");
+        const candidatExiste = candidats.find(
+            candidat => candidat.cin === cin );
+        if (candidatExiste) {
+            console.log("Erreur : ce CIN existe déjà.");
+            i--;
+            continue; }
+        let nom = prompt("Entrez Votre Nom :");
+        let prenom = prompt("Entrez Votre Prenom :");
+        let partiPolitique = prompt("Parti Politique OU Indépendant :");
+        let age;
+        while (true) {
+            age = +prompt("Entrez Votre Age :");
+            if (!isNaN(age) && age >= 18) {
+                break;}
+        console.log("Erreur : T'es Mineur Pour Voter");
+        console.log("Veuillez Entrer Un Age Correct"); }
+        candidats.push({ cin: cin, nom: nom, prenom: prenom, partiPolitique: partiPolitique, age: age, electeurs: [] });
+		console.log("Candidat Ajouté Avec Succès");}
 }
-function afficherliste() {
-	console.log("Liste Des Candidats");
-	if (candidats.length === 0) {
-		console.log("Aucun Candidat");
-		return;
-	}
-	candidats.forEach((candidat, index) => {
-		console.log("Candidat"+ " " + (index + 1) + " :");
-		console.log("CIN : " + candidat.cin);
-		console.log("NOM : " + candidat.nom);
-		console.log("PRENOM : " + candidat.prenom);
-		console.log("Parti Politique : " + candidat.partiPolitique);
-		console.log("AGE : " + candidat.age);
-		console.log("Nombre De Votes : " + candidat.electeurs.length);
-	})
+function afficherliste(){
+	console.log("Liste des candidats :", candidats);
 }
 function afficherclassement() {
 	console.log("Classement Par Nombre Des Votes :");
