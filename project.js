@@ -1,10 +1,10 @@
 let prompt = require('prompt-sync')();
 const candidats = [{
-	cin: "AB123456", nom: "Boushaba", prenom: "Soufiane", partiPolitique: "PGD", age: 40, electeurs: ["PA261531"]},
+	cin: "AB123456", nom: "Boushaba", prenom: "Soufiane", partiPolitique: "PGD", age: 40, electeurs: []},
 	{cin: "MP123456", nom: "Bouh", prenom: "Lehcen", partiPolitique: "PAM", age: 35, electeurs: []}
 ];
 function ajouterCandidat() {
-	console.log("Ajouter un Candidat :");
+	console.log("----Ajouter un Candidat----:");
 	let cin;
 	while (true) {  
 		cin = prompt("Entrez Votre CIN :");
@@ -32,7 +32,7 @@ function ajouterCandidat() {
 	console.log("Candidat Ajouter Avec Succés");
 }
 function ajouterplufois() {
-    console.log("Ajouter Plusieurs Candidats :");
+    console.log("----Ajouter Plusieurs Candidats----:");
     const nombre = +prompt("Combien De Candidats Que Vous Voulez Ajouter :");
     if (isNaN(nombre) || nombre <= 0) {
         console.log("Erreur : Nombre Invalide");
@@ -60,10 +60,10 @@ function ajouterplufois() {
 		console.log("Candidat Ajouté Avec Succès");}
 }
 function afficherliste(){
-	console.log("Liste des candidats :", candidats);
+	console.log("----Liste des candidats----:", candidats);
 }
 function afficherclassement() {
-	console.log("Classement Par Nombre Des Votes :");
+	console.log("----Classement Par Nombre Des Votes----:");
 	const Classement = [...candidats];
 	Classement.sort(function (a, b) {
 		return b.electeurs.length - a.electeurs.length;});
@@ -77,7 +77,7 @@ function afficherclassement() {
 		console.log("Nombre De Votes : " + candidat.electeurs.length);});
 }
 function filtrercandidat() {
-	console.log("Filtrer Par Parti Politique :");
+	console.log("----Filtrer Par Parti Politique----:");
 	const parti = prompt("Entrez Le Parti Politique :");
 	const resultat = candidats.filter(function (candidat) {
 		return candidat.partiPolitique.toLowerCase() === parti.toLowerCase()});
@@ -95,7 +95,7 @@ function filtrercandidat() {
 		console.log("Nombre De Votes : " + candidat.electeurs.length);});
 }
 function voterpour() {
-	console.log("Voter Pour Un Candidat :");
+	console.log("----Voter Pour Un Candidat----:");
 	const cinElecteur = prompt("Entrez Votre CIN :");
 	for (let i = 0; i < candidats.length; i++) {
 		if (candidats[i] && candidats[i].electeurs.includes(cinElecteur)) {
@@ -111,7 +111,7 @@ function voterpour() {
 	console.log("Votre Vote Enregistré Avec Succés");
 }
 function modifier() {
-	console.log("Modifier Les Informations D'un Candidat :");
+	console.log("----Modifier Les Informations D'un Candidat----:");
 	let cin = prompt("Entrez Votre CIN :");
 	let candidat = candidats.find(function (candidat) {
 		return candidat.cin === cin;});
@@ -135,7 +135,7 @@ function modifier() {
 	else {console.log("Choix Invalide");}
 }
 function supprimeruncandidat(){
- console.log("Supprime Un Candidat :");
+ console.log("----Supprime Un Candidat----:");
  let cin = prompt("CIN De Candidat A Supprimer :");
  let index = candidats.findIndex(function(candidat){
 	return candidat.cin === cin;
@@ -148,7 +148,7 @@ function supprimeruncandidat(){
  console.log("Candidat Supprimé Avec Succes");
 }
 function rechercheuncandidat(){
- console.log("Recherche Un Candidat :");
+ console.log("----Recherche Un Candidat----:");
  let nom = prompt("Entrez Le Nom A recherché :");
  let resultat = candidats.find(function(candidat){
 	return candidat.nom.toLowerCase() === nom.toLowerCase();
@@ -165,7 +165,7 @@ function rechercheuncandidat(){
 	console.log("Nombre De Votes :" + resultat.electeurs.length);
 }
 function statistique(){
-  console.log("Statistique :");
+  console.log("----Statistique----:");
   console.log("Nombre Total De Candidats : "+ candidats.length);
   let totalvote = 0;
   for(let i=0; i < candidats.length; i++){
@@ -192,24 +192,24 @@ function statistique(){
 		for(let j = 0; j<candidats.length; j++){
 			if(candidats[j].partiPolitique === partis[i]){
 				compteur++;}}
-		console.log(partis[i] + ":" + compteur + " " + "candidat");}		
+		console.log(partis[i] + ":" + compteur + " " + "candidat(s)");}		
 }
 function menuprincipal(){
 let suite = true;
     console.log("Bienvenue :"); 
 while(suite){
-	console.log("Menu Principal :");
-	console.log("1 - Ajouter Un Nouveau Candidat .");
-	console.log("2 - Ajouter plusieur candidats .");
-	console.log("3 - Afficher Les Candidats .");
-	console.log("4 - Afficher Le Classement .");
-	console.log("5 - Filtrer Les Candidats .");
-	console.log("6 - Voter .");
-	console.log("7 - Modifier Un Candidat .");
-	console.log("8 - Supprimer Un Candidat .");
-    console.log("9 - Recherche Un Candidat .");
-	console.log("10 - Statistiques .");
-	console.log("0 - Quitter .");
+	console.log("______________Menu Principal______________:");
+	console.log("1  -----Ajouter Un Nouveau Candidat-----");
+	console.log("2  -----Ajouter plusieur candidats-----");
+	console.log("3   -----Afficher Les Candidats-----");
+	console.log("4    ----Afficher Le Classement----");
+	console.log("5     ---Filtrer Les Candidats----");
+	console.log("6            -----Voter-----");
+	console.log("7    -----Modifier Un Candidat-----");
+	console.log("8   ------Supprimer Un Candidat------");
+    console.log("9  -------Recherche Un Candidat-------");
+	console.log("10        ----Statistiques----");
+	console.log("0           ----Quitter---- ");
 	let choix = +prompt("Entrez Votre Choix :");
 switch(choix){
 	case 1 : ajouterCandidat();
